@@ -30,7 +30,7 @@ def command(input):
     # pyautogui.keyUp('alt')
     # keyboard.release(Key.alt)
 
-    inputs = input.lower().split("\W+")
+    inputs = input.lower().split("-")
     print(inputs)
     current_keyboard_keys = keyboard_keys[config["language"].split("-")[0]]
     if inputs[0] in current_keyboard_keys:
