@@ -2,6 +2,6 @@
   "chunk_size": 300,
   "language": "pt-BR",
   "ambient_noise": {
-    "duration": 0.5
+    "duration": 1
   }
 }

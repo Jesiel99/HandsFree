@@ -1,0 +1,29 @@
+{
+  "pt": {
+    "abrir chaves": "{",
+    "fechar chaves": "{",
+    "abrir parentêsis": "(",
+    "fechar parentêsis": ")",
+    "sinal mais": "+",
+    "sinal igual": "=",
+    "sinal interrogação": "?",
+    "sinal exclamação": "!",
+    "sinal traço": "-"
+  },
+
+  "en": {
+    "open brackets": "{",
+    "close brackets": "{",
+    "open square brackets": "{",
+    "close square brackets": "{",
+    "open parentesis": "(",
+    "close parentesis": ")",
+    "plus sign": "+",
+    "equal sign": "=",
+    "interrogation sign": "?",
+    "exclamation sign": "!",
+    "trace sign": "-",
+    "semicolon": ";",
+    "space": " "
+  }
+}
