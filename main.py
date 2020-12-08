@@ -1,5 +1,6 @@
 # sudo apt-get install python3-tk python3-dev
 # sudo apt install python3-pyaudio
+from collections import OrderedDict
 import speech_recognition as sr
 # from pynput.keyboard import Key, Controller
 from Sound import Sound
@@ -53,21 +54,24 @@ def press(inputs):
 def command(input):
     print(input)
     raw_input = input
-    input = input.replace('-', ' ').lower()
+    input = ' ' + input.replace('-', ' ').lower() + ' '
     dictionary = {}
     input2 = input
     for element in key_voice_commands:
-        if len(element) == 1:
-            element2 = ' ' + element + ' '
-        else:
-            element2 = element
-        key_index = re.search(r'(' + element2 + ')', input)
-        if key_index is not None:
-            dictionary[element] = key_index.start()
-            print(key_index.start())
-            input2 = input2.replace(element, '')
+        while True:
+            if len(element) == 1:
+                element2 = ' ' + element + ' '
+            else:
+                element2 = element
+            key_index = re.search(r'(' + element2 + ')', input2)
+            if key_index is not None:
+                dictionary[key_index.start()] = element
+                print(key_index.start())
+                input2 = input2.replace(element, ' ' * len(element), 1)
+            else:
+                break
     print(dictionary)
-    keyboard_command_inputs = list(dict(sorted(dictionary.items(), key=lambda item: item[1])).keys())
+    keyboard_command_inputs = list(OrderedDict(sorted(dictionary.items())).values())
     # elif all(elem in key_voice_commands for elem in inputs):
     print(keyboard_command_inputs)
     # if the input contains just keyboard commands
