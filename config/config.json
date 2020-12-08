@@ -1,7 +1,7 @@
 {
   "chunk_size": 300,
-  "language": "pt-BR",
+  "language": "en-US",
   "ambient_noise": {
-    "duration": 1
+    "duration": 0.2
   }
 }
