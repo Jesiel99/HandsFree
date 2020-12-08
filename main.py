@@ -26,7 +26,7 @@ numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 release_after = []
 current_keyboard_command_keys = keyboard_command_keys[config["language"].split("-")[0]]
 keyboard_symbols_keys = alphabet + numbers
-key_voice_commands = keyboard_symbols_keys + list(current_keyboard_command_keys.keys())
+key_voice_commands =  list(current_keyboard_command_keys.keys()) + keyboard_symbols_keys
 
 
 def press(inputs):
@@ -52,25 +52,31 @@ def press(inputs):
 
 def command(input):
     print(input)
-    input.replace('-', ' ')
-    # inputs = ['windows', 'windows', 'alt', 'tab']
+    raw_input = input
+    input = input.replace('-', ' ').lower()
     dictionary = {}
     input2 = input
     for element in key_voice_commands:
-        dictionary[element] = re.search(r'\b(' + element + ')\b', input) or ''
-        input2.replace(element, '')
+        if len(element) == 1:
+            element2 = ' ' + element + ' '
+        else:
+            element2 = element
+        key_index = re.search(r'(' + element2 + ')', input)
+        if key_index is not None:
+            dictionary[element] = key_index.start()
+            print(key_index.start())
+            input2 = input2.replace(element, '')
     print(dictionary)
-    keyboard_command_inputs = dict(sorted(dictionary.items(), key=lambda item: item[1])).values()
-    # print(a.start())
+    keyboard_command_inputs = list(dict(sorted(dictionary.items(), key=lambda item: item[1])).keys())
     # elif all(elem in key_voice_commands for elem in inputs):
     print(keyboard_command_inputs)
     # if the input contains just keyboard commands
-    if input2 == '':
+    if input2.strip() == '':
         press(keyboard_command_inputs)
     elif input.lower() in special_characters_commands:
         pyautogui.press(special_characters_commands[input.lower()])
     else:
-        pyautogui.write(input)
+        pyautogui.write(raw_input)
 
 
 def listen():
@@ -91,7 +97,7 @@ def listen():
 
 r = sr.Recognizer()
 # 7 is just my main Microphone index, remove it and try without any input that it should link to your default microphone
-mic = sr.Microphone(13, chunk_size=1000)  # USB PnP Sound Device: Audio (hw:1,0)
-print(mic.list_microphone_names()[13])
+mic = sr.Microphone(6, chunk_size=1000)  # USB PnP Sound Device: Audio (hw:1,0)
+print(mic.list_microphone_names()[6])
 listen()
 # page downdeleteandain'tautistaaldhabiAltarCloudoutside
