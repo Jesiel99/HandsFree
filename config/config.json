@@ -3,5 +3,6 @@
   "language": "en-US",
   "ambient_noise": {
     "duration": 0.2
-  }
+  },
+  "microphone": "USB PnP Audio Device: Audio (hw:0,0)"
 }

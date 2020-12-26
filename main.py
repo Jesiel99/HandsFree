@@ -1,6 +1,9 @@
 # sudo apt-get install python3-tk python3-dev
 # sudo apt install python3-pyaudio
+
 import speech_recognition as sr
+from voice_recognition.Recognizer import Recognizer
+from voice_recognition.models import Google
 # from pynput.keyboard import Key, Controller
 from Sound import Sound
 import pyaudio
@@ -81,6 +84,8 @@ def listen():
     print('Processing')
     try:
         input = r.recognize_google(audio, language=config["language"])
+        recognizer = Recognizer('google')
+        recognizer.recognize()
         print(input)
         command(input)
     except sr.UnknownValueError as e:
@@ -89,9 +94,11 @@ def listen():
     listen()
 
 
+recognizer2 = Recognizer('google')
+recognizer2.recognize()
 r = sr.Recognizer()
-# 7 is just my main Microphone index, remove it and try without any input that it should link to your default microphone
-mic = sr.Microphone(13, chunk_size=1000)  # USB PnP Sound Device: Audio (hw:1,0)
-print(mic.list_microphone_names()[13])
+mic = sr.Microphone()
+print(mic.list_microphone_names())
+mic = sr.Microphone(mic.list_microphone_names().index(config['microphone']), chunk_size=1000)  # USB PnP Sound Device: Audio (hw:1,0) alt-tab
 listen()
-# page downdeleteandain'tautistaaldhabiAltarCloudoutside
+
